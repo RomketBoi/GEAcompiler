@@ -7,6 +7,7 @@ A program to convert supported files into the .gea (Galactic Engine Asset) forma
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
+- [Credits](#credits)
 - [License](#license)
 
 ## Installation
@@ -43,6 +44,16 @@ We welcome contributions from everyone. Here are a few ways you can help:
     - We'll review your pull request and merge it if everything looks good.
 
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+## Credits
+
+This project uses the following libraries:
+
+- [GLM](https://github.com/g-truc/glm) by g-truc, licensed under the [MIT License](https://github.com/g-truc/glm/blob/master/copying.txt)
+- [lz4](https://github.com/lz4/lz4) by Yann Collet, licensed under the [BSD 2-Clause License](https://github.com/lz4/lz4/blob/dev/lib/LICENSE)
+- [rapidjson](https://github.com/Tencent/rapidjson) by Tencent, licensed under the [MIT License](https://github.com/Tencent/rapidjson/blob/master/license.txt)
+- [stb](https://github.com/nothings/stb) by Sean Barrett, licensed under the [MIT License](https://github.com/nothings/stb/blob/master/LICENSE)
+- [tinyobjloader](https://github.com/tinyobjloader/tinyobjloader) by Syoyo Fujita and many contributors, licensed under the [MIT License](https://github.com/tinyobjloader/tinyobjloader/blob/release/LICENSE)
 
 ## License
 
