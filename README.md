@@ -1,6 +1,7 @@
 # GEA Compiler
 
 A program to convert supported files into the .gea (Galactic Engine Asset) format to be read by Galactic Engine for faster loading times.
+Note: the Galactic Engine project is currently in development and is not yet publicly available.
 
 ## Table of Contents
 
@@ -54,6 +55,8 @@ This project uses the following libraries:
 - [rapidjson](https://github.com/Tencent/rapidjson) by Tencent, licensed under the [MIT License](https://github.com/Tencent/rapidjson/blob/master/license.txt)
 - [stb](https://github.com/nothings/stb) by Sean Barrett, licensed under the [MIT License](https://github.com/nothings/stb/blob/master/LICENSE)
 - [tinyobjloader](https://github.com/tinyobjloader/tinyobjloader) by Syoyo Fujita and many contributors, licensed under the [MIT License](https://github.com/tinyobjloader/tinyobjloader/blob/release/LICENSE)
+
+The code in this project borrows heavily from [VulkanGuide](https://vkguide.dev/) and would likely not exist if not for this resource.
 
 ## License
 
