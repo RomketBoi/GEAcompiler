@@ -1,9 +1,15 @@
+[submodule "lib/glm"]
+	path = lib/glm
+	url = https://github.com/g-truc/glm
+[submodule "lib/lz4"]
+	path = lib/lz4
+	url = https://github.com/lz4/lz4
+[submodule "lib/rapidjson"]
+	path = lib/rapidjson
+	url = https://github.com/Tencent/rapidjson
 [submodule "lib/stb"]
 	path = lib/stb
 	url = https://github.com/nothings/stb
-[submodule "lib/assimp"]
-	path = lib/assimp
-	url = https://github.com/assimp/assimp
 [submodule "lib/tinyobjloader"]
 	path = lib/tinyobjloader
 	url = https://github.com/tinyobjloader/tinyobjloader
