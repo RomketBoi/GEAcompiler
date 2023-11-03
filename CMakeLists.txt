@@ -24,10 +24,6 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Set output directories
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
 # Set the source directory
 set(SOURCE_DIR ${PROJECT_SOURCE_DIR}/src)
 
@@ -42,38 +38,46 @@ set(LIB_DIR ${PROJECT_SOURCE_DIR}/lib)
 
 # Set compiler flags for debug build
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    add_compile_definitions(DEBUG)
+add_compile_definitions(DEBUG)
 
-    if(MSVC)
-        # Compiler is Visual Studio
-        add_compile_options(/Zi /Od)
+if(MSVC)
+# Compiler is Visual Studio
+add_compile_options(/Zi /Od)
 
-    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-        # Compiler is gcc/g++
-        add_compile_options(-g -O0 -Wall -Wno-unused)
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+# Compiler is gcc/g++
+add_compile_options(-g -O0 -Wall -Wno-unused)
 
-    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-        # Compiler is Clang
-        add_compile_options(-g -O0 -Weverything)
-    endif()
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+# Compiler is Clang
+add_compile_options(-g -O0 -Weverything)
+endif()
 endif()
 
 # Set compiler flags for release build
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    add_compile_definitions(RELEASE)
+add_compile_definitions(RELEASE)
 
-    if(MSVC)
-        # Compiler is Visual Studio
-        add_compile_options(/O2 /DNDEBUG)
+if(MSVC)
+# Compiler is Visual Studio
+add_compile_options(/O2 /DNDEBUG)
 
-    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-        # Compiler is gcc/g++
-        add_compile_options(-O3 -DNDEBUG -mwindows)
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+# Compiler is gcc/g++
+add_compile_options(-O3 -DNDEBUG)
 
-    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-        # Compiler is Clang
-        add_compile_options(-O3 -DNDEBUG -mwindows)
-    endif()
+if (WIN32)
+add_compile_options(-mwindows)
+endif()
+
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+# Compiler is Clang
+add_compile_options(-O3 -DNDEBUG)
+
+if (WIN32)
+add_compile_options(-mwindows)
+endif()
+endif()
 endif()
 
 # Get all source files
@@ -85,6 +89,20 @@ add_executable(gea_compiler ${SOURCES})
 # Add library
 list(REMOVE_ITEM SOURCES ${SOURCE_DIR}/main.cpp)
 add_library(gea_compiler_lib STATIC ${SOURCES})
+
+# Set output directories for gea_compiler target
+set_target_properties(gea_compiler PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}/bin
+    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}/lib
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}/lib
+)
+
+# Set output directories for gea_compiler_lib target
+set_target_properties(gea_compiler_lib PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}/bin
+    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}/lib
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}/lib
+)
 
 # Add include directories
 target_include_directories(gea_compiler PUBLIC ${INCLUDE_DIR})
